@@ -1,0 +1,54 @@
+
+<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <!--header name icon and stuff -->
+    <md-toolbar class="md-tall md-hue-2">
+        <span flex></span>
+        <div layout="column" class="md-toolbar-tools-bottom inset">
+            <user-avatar></user-avatar>
+            <span></span>
+            <div>Nilesh Jayanandana</div>
+            <div></div>
+        </div>
+    </md-toolbar>
+    <!--end -->
+
+    <!-- sidebar list -->
+    <md-list class="">
+        <div ng-repeat="x in sc.sidebar">
+            <md-divider></md-divider>
+            <md-subheader>{{x.header}}</md-subheader>
+            <md-list-item ui-sref-active="active" ui-sref="{{a.sref}}" ng-click="sc.nav(a.click)" ng-repeat="a in x.items">
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                    <div class="inset">
+                        <ng-md-icon icon="{{a.icon}}"></ng-md-icon>
+                    </div>
+                    <div class="inset"> {{a.name}}</div>
+                </md-item-content>
+
+            </md-list-item>
+        </div>
+    </md-list>
+    <!--end list-->
+</md-sidenav>
+<!--end sidebar -->
+
+<!--content-->
+<div layout="column" class="relative" layout-fill role="main">
+    <!--content header -->
+    <md-toolbar>
+    <nav class="">
+        <div class="nav-wrapper " style="padding-left:2%">
+
+            <a href="#!" class="breadcrumb" ng-repeat="x in navigation">{{x.name}}</a>
+
+        </div>
+    </nav>
+    </md-toolbar>
+    <!--content header -->
+
+    <!--views -->
+    <div ui-view="content"></div>
+    <!--end views -->
+
+</div>
+<!--end-content-->

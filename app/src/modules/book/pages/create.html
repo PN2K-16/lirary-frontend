@@ -1,0 +1,237 @@
+<md-content flex="nogrow" style="width:900px; margin: 20px auto">
+    <div>
+        <md-card>
+
+            <md-stepper-card-content class="md-no-padding">
+                <md-steppers md-dynamic-height md-disable-tabs-behavior="true" md-stretch-steppers="always" md-selected="vm.selectedStep"
+                    md-busy-text="'Processing...'" md-busy="vm.showBusyText">
+                    <md-step label="Step 1 : Basic Information" md-complete="vm.step1.completed">
+                        <md-step-body>
+
+                            <form name="step1" ng-submit="vm.submitCurrentStep(vm.stepData[0].data)">
+                                <md-content class=" ">
+
+                                    <div layout="row" layout-align="center top">
+
+                                        <div flex="nogrow" style="width: 800px">
+                                            <div layout="row" layout-align="center top">
+                                                <div flex="50">
+
+                                                    <md-input-container class="md-block">
+                                                        <label>Enter Book Title</label>
+                                                        <input name="bookname" ng-model="vm.book.title" required/>
+                                                        <div ng-messages="step1.bookname.$error">
+                                                            <div ng-message="required">
+                                                                Book name is required to proceed on next step.
+                                                            </div>
+                                                        </div>
+                                                    </md-input-container>
+
+                                                    <md-input-container class="md-block">
+                                                        <label> Enter Athour Name</label>
+                                                        <input name="authorname" ng-model="vm.book.author" required/>
+                                                        <div ng-messages="step1.authorname.$error">
+                                                            <div ng-message="required">
+                                                                Author name is required to proceed on next step.
+                                                            </div>
+                                                        </div>
+                                                    </md-input-container>
+
+                                                    <md-input-container class="md-block">
+                                                        <label>Enter Editor Name</label>
+                                                        <input name="edit_translate" ng-model="vm.book.edit_translate" />
+
+                                                    </md-input-container>
+
+                                                    <md-input-container class="md-block">
+                                                        <label> Enter CL Number</label>
+                                                        <input name="cl_number" ng-model="vm.book.cl_number" />
+
+                                                    </md-input-container>
+                                                    <md-input-container class="md-block">
+                                                        <label> Enter ISBN Number</label>
+                                                        <input name="isbn" ng-model="vm.book.isbn" />
+
+                                                    </md-input-container>
+
+                                                    <md-input-container class="md-block">
+                                                        <md-select ng-model="vm.book.cat_id" placeholder="Select Book Category">
+                                                            <md-option ng-value="opt" ng-repeat="opt in neighborhoods2">{{ opt }}</md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+
+                                                </div>
+                                                <div flex="50" class="md-padding" style="padding-right:0cm">
+
+
+                                                    <div class="md-block">
+                                                        <div layout-align="center center" style="padding-top:8%" layout="row">
+                                                            <ng-dropzone flex class="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods">
+
+                                                            </ng-dropzone>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </md-content>
+                                <md-step-actions layout="row">
+                                    <div flex layout="row" layout-align="end top">
+                                        <md-button type="reset" class="md-warn">RESET</md-button>
+                                        <md-button ng-click="vm.next(1)" class="md-primary md-raised">NEXT</md-button>
+                                    </div>
+                                </md-step-actions>
+                            </form>
+                        </md-step-body>
+                    </md-step>
+                    <md-step label="Step 2 : Additional Information " md-complete="vm.step2.completed" ng-disabled="vm.step2.disabled">
+                        <md-step-body>
+                            <form name="step2">
+
+                                <div layout="row" layout-align="center top">
+
+                                    <div flex="50">
+
+                                        <md-content class="md-padding" style="padding-top:0cm">
+                                            <div layout="row" layout-align="center top">
+                                                <div flex="nogrow" style="width: 400px">
+                                                    <h4>
+                                                        <md-badge class="md-primary-badge">Publisher Information</md-badge>
+                                                    </h4>
+                                                    <div layout="row" layout-align="center top">
+                                                        <div flex="nogrow" style="width: 400px">
+                                                            <md-input-container class="md-block">
+                                                                <label>Enter Publisher Name</label>
+                                                                <input name="publisher_name" ng-model="vm.book.publisher_name" />
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block">
+                                                                <label>Enter Published Place</label>
+                                                                <input name="publish_place" ng-model="vm.book.publish_place" />
+                                                            </md-input-container>
+                                                            <md-input-container class="md-block">
+                                                                <label>Enter Published Year</label>
+                                                                <input name="publish_year" ng-model="vm.book.publish_year" />
+                                                            </md-input-container>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </md-content>
+
+                                    </div>
+                                    <div flex="50">
+
+                                        <md-content class="md-padding" style="padding-top:0cm">
+                                            <div layout="row" layout-align="center top" style="margin-bottom:2%">
+                                                <div flex="nogrow" style="width: 400px">
+                                                    <h4>
+                                                        <md-badge>Physical Information</md-badge>
+                                                    </h4>
+                                                    <div layout="row" layout-align="center top">
+                                                        <div flex="50">
+                                                            <md-input-container class="md-block">
+                                                                <label>Enter No. of Pages</label>
+                                                                <input type="number" name="page_no" ng-model="vm.book.page_no" />
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div flex="50" style="padding-left:4%">
+                                                            <md-input-container class="md-block">
+                                                                <label>Enter Book Height</label>
+                                                                <input name="height" ng-model="vm.book.height" />
+                                                            </md-input-container>
+                                                        </div>
+                                                    </div>
+                                                    <md-input-container class="md-block">
+                                                        <label>Enter Remarks</label>
+                                                        <textarea name="remarks" rows="3" ng-model="vm.book.remarks"></textarea>
+                                                    </md-input-container>
+                                                </div>
+                                            </div>
+                                        </md-content>
+
+                                    </div>
+
+
+
+                                </div>
+                                <div layout="row" layout-align="center top">
+                                    <div flex="100">
+                                        <md-content class="md-padding" style="padding-top:0cm">
+                                            <div layout="row" layout-align="  top">
+                                                <div flex="nogrow">
+                                                    <h4 style="margin-top:0cm">
+                                                        <md-badge class="md-info-badge">Series Information</md-badge>
+                                                    </h4>
+                                                    <div layout="row">
+                                                        <div flex="70" style="width: 400px">
+                                                            <md-input-container class="md-block">
+                                                                <label>Enter Book Series Title</label>
+                                                                <input name="series_title" ng-model="vm.book.series_title" />
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div flex="30" style="width: 400px;padding-left:4%">
+                                                            <md-input-container class="md-block">
+                                                                <md-select name="series_num" ng-model="vm.book.series_num" placeholder="Select Series Number">
+                                                                    <md-option ng-value="x" ng-repeat="x in vm.series_numbers"> Book - {{ x }}</md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </md-content>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <md-step-actions layout="row">
+                                    <div flex>
+                                        <md-button ng-click="vm.previous(0)">PREVIOUS</md-button>
+                                    </div>
+                                    <div flex layout="row" layout-align="end top">
+                                        <md-button type="reset" class="md-warn">RESET</md-button>
+                                        <md-button ng-disabled="vm.showBusyText" ng-click="vm.next(2)" class="md-primary md-raised">
+                                            NEXT
+                                        </md-button>
+                                    </div>
+                                </md-step-actions>
+                            </form>
+                        </md-step-body>
+                    </md-step>
+                    <md-step label=" Finished" md-complete="vm.step3.completed" ng-disabled="vm.stepProgress < 3">
+                        <md-step-body>
+
+                            <md-content class="md-padding">
+                                <div layout="column" layout-align="center center" style="min-height: 200px">
+
+                                    <img ng-src="./img/success-icon.png" height="90px" />
+                                    <h3 class="md-headline">Book Created Successfully!</h3>
+                                    <div layout="row" layout-align="center center">
+
+                                        <div flex="50">
+
+                                            <md-button class="md-raised" ng-click="vm.startOver()" style="width:200px"> Start Over</md-button>
+                                        </div>
+                                        <div flex="50">
+
+                                            <md-button class="md-primary md-raised" style="width:200px"> Add Copies</md-button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </md-content>
+
+                        </md-step-body>
+                    </md-step>
+                </md-steppers>
+            </md-stepper-card-content>
+        </md-card>
+    </div>
+</md-content>

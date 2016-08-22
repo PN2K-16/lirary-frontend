@@ -1,0 +1,17 @@
+{
+  "name": "material-start",
+  "description": "A starter project for AngularJS Material",
+  "main": "",
+  "authors": [
+    "Nilesh Jayanandana <nilesh.jayanandana@yahoo.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/angular/material-start",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
